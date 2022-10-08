@@ -1,6 +1,5 @@
 package pckg;
 
-import java.security.SecureRandom;
 import java.util.Arrays;
 
 public class MergeSort {
@@ -15,10 +14,6 @@ public class MergeSort {
 			int middle1 = (low + high) / 2;
 			int middle2 = middle1 + 1;
 			
-			System.out.printf("Podzial:  %s%n", subarrayString(data, low, high));
-			System.out.printf("          %s%n", subarrayString(data, low, middle1));
-			System.out.printf("	  %s%n%n", subarrayString(data, middle2, high));
-			
 			sortArray(data, low, middle1);
 			sortArray(data, middle2, high);
 			
@@ -31,9 +26,7 @@ public class MergeSort {
 		int rightIndex = middle2;
 		int combinedIndex = left;
 		int[] combined = new int[data.length];
-		
-		System.out.printf("Scalenie:  %s%n", subarrayString(data, left, middle1));
-		System.out.printf("           %s%n", subarrayString(data, middle2, right));
+
 		
 		while (leftIndex <= middle1 && rightIndex <= right) {
 			if (data[leftIndex] <= data[rightIndex]) {
@@ -57,29 +50,13 @@ public class MergeSort {
 			data[i] = combined[i];
 		}
 		
-		System.out.printf("           %s%n%n", subarrayString(data, left, right));
 	}
 	
-	private static String subarrayString(int[] data, int low, int high) {
-		
-		StringBuilder temporary = new StringBuilder();
-		
-		for (int i = 0; i < low; i++) {
-			temporary.append("   ");
-		}
-		
-		for (int i = low; i <= high; i++) {
-			temporary.append(" " + data[i]);
-		}
-		
-		return temporary.toString();
-	}
 	
 	public static void main(String[] args) {
 		
-		SecureRandom generator = new SecureRandom();
 		
-		int[] data = generator.ints(10, 10, 91).toArray();
+		int[] data = {1, 190, 6, 32, 45, 3, 8, 7, 66, 45, 84};
 		
 		System.out.printf("Tablica nieposortowana: %s%n%n", Arrays.toString(data));
 		mergeSort(data);
